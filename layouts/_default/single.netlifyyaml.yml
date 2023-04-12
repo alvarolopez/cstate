@@ -59,10 +59,13 @@ collections:
       - {label: "Mark as informational ℹ", name: "informational", widget: "boolean", required: false, default: false}
       - {label: "Pin to top of page", name: "pin", widget: "boolean", required: false, default: false}
       - {label: "End date & time (your time) ⌛", name: "resolvedWhen", widget: "datetime", required: false}
-      - label: "Affected systems (use exact name, separated by commas) 🧐"
+      - label: "Affected systems"
         name: "affected"
-        widget: "list"
-        required: false
+        widget: "select"
+        multiple: true
+        options:
+{{ range .Site.Params.Systems }}          - { label: "{{ .name }}", value: "{{ .name }}" }
+{{ end }}
       - label: "Severity ⚠"
         name: "severity"
         widget: "select"
